@@ -5,12 +5,18 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "format": "prettier --write src/*.*"
+    "precommit": "lint-staged",
+    "format": "prettier --write src/{**/*,*}.{js,jsx,vue,scss,less,css}"
+  },
+  "lint-staged": {
+    "src/{**/*,*}.{js,jsx,vue,scss,less,css}": ["prettier --write", "git add"]
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "husky": "^0.14.3",
+    "lint-staged": "^7.0.0",
     "prettier": "^1.11.1"
   }
 }

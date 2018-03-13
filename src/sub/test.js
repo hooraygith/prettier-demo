@@ -6,7 +6,7 @@ export default {
     data() {
         return {
             statistics: config.statistics
-        };
+        }
     },
     methods: {
         removeLegendPercent(data) {
@@ -35,13 +35,24 @@ export default {
             return data
         },
         init(data, isInit = true) {
-
             // 饼图的legend的文字太长，放不下，去掉最后的百分比
             data = this.removeLegendPercent(data)
 
             // 饼状图
             // 工作性质 司龄 工龄 性别 学历 年龄 年代 已婚 已育 生肖 星座
-            ;['work_type', 'work_age', 'service_age', 'sex', 'education', 'age', 'birthday', 'marriage', 'birth_children', 'zodiac', 'constellation'].forEach(key => {
+            ;[
+                'work_type',
+                'work_age',
+                'service_age',
+                'sex',
+                'education',
+                'age',
+                'birthday',
+                'marriage',
+                'birth_children',
+                'zodiac',
+                'constellation'
+            ].forEach(key => {
                 this.statistics[key].legend.data = data[key].pie.legend
                 this.statistics[key].series[0].data = data[key].pie.series
             })
@@ -62,14 +73,14 @@ export default {
             // })
 
             /*绘制图表*/
-            if(this.$route.name == 'employeeOverviewReport') {
+            if (this.$route.name == 'employeeOverviewReport') {
                 //报告老板免登录页面不使用setTimeout，子组件将无法接收到广播消息
-                setTimeout(()=> {
-                    this.$broadcast('onEchartsInit', isInit);
-                }, 0);
+                setTimeout(() => {
+                    this.$broadcast('onEchartsInit', isInit)
+                }, 0)
             } else {
-                this.$broadcast('onEchartsInit', isInit);
+                this.$broadcast('onEchartsInit', isInit)
             }
-        },
+        }
     }
-};
+}

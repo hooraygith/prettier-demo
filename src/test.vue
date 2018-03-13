@@ -32,19 +32,19 @@
             <p>开发票时出示</p>
         </div>
         <no-data v-if="modelResolved && !model.fullname" title="" top="1rem">
-        <div style="color: #80848f">
-            <p>HR完善企业信息后即可显示开票二维码</p>
-            <p>商家扫一扫，轻松开发票</p>
-        </div>
+            <div style="color: #80848f">
+                <p>HR完善企业信息后即可显示开票二维码</p>
+                <p>商家扫一扫，轻松开发票</p>
+            </div>
         </no-data>
     </div>
 </div>
 </template>
 <script>
-import { mapState } from "vuex"
-import noData from "components/no-data.vue"
+import {mapState} from 'vuex'
+import noData from 'components/no-data.vue'
 export default {
-    components: { noData },
+    components: {noData},
     data() {
         return {
             model: {},
@@ -52,11 +52,11 @@ export default {
         }
     },
     computed: {
-      ...mapState("user", ["userData"])
+        ...mapState('user', ['userData'])
     },
     async created() {
-        Vue.$Store.dispatch("user/getUserProfile");
-        this.model = await Vue.$Api.getComponyFapiao();
+        Vue.$Store.dispatch('user/getUserProfile')
+        this.model = await Vue.$Api.getComponyFapiao()
         this.modelResolved = true
     }
 }
